@@ -22,7 +22,43 @@
     </nav>
 
     <div class="container">
-        <canvas id="chart"></canvas>
+
+        <h1>Consommation</h1>
+
+        <div id="file-upload">
+
+            <div class="row">
+                <div class="card col s12 m6">
+                    <div class="card-content">
+                        <p>Sélectionnez le fichier contenant les relevés de consommation,
+                        puis validez afin d'afficher les graphiques correspondants.</p>
+                    </div>
+                </div>
+            </div>
+
+            <form action="#">
+
+                <div class="file-field input-field">
+                    <div class="btn green">
+                        <span>Fichier historique</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+
+                    <a class="waves-effect waves-light btn-large green right">Valider</a>
+                </div>
+            </form>
+
+        </div>
+
+        <div id="charts" style="display:none;">
+
+            <canvas id="chart"></canvas>
+
+        </div>
+
     </div>
 
     <!-- About -->

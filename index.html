@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Consommation</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper green">
+            <a href="#" class="brand-logo center">Consommation</a>
+            <ul id="nav-mobile" class="hide-on-med-and-down right">
+                <li><a class="modal-trigger" href="#about">À propos</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <!-- About -->
+    <div class="modal" id="about">
+        <div class="modal-content">
+            <h2>À propos</h2>
+            <p>Développé par Adrien VANNSON</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat">Fermer</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

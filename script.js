@@ -8,6 +8,7 @@ function showCharts ()
 {
     document.getElementById('file-upload').style.display = 'none';
     document.getElementById('charts').style.display = 'block';
+    document.getElementById('arrow-back').style.display = 'block';
 
     var file = document.getElementById('hist-file').files[0];
 

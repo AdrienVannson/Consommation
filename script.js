@@ -61,12 +61,16 @@ function showCharts ()
             lastConsumption = totalConsumption;
         });
 
-        createBarChart();
+        createCharts();
     });
 }
 
-function createBarChart ()
+var chartDailyConsumption = null;
+var chartPower = null;
+
+function createCharts ()
 {
+    // Create the bar chart
     var labels = [];
     var data = [];
 
@@ -75,13 +79,14 @@ function createBarChart ()
         data.push(day.consumption);
     });
 
-    new Chart(document.getElementById('daily-consumption').getContext('2d'), {
+    var chartCanevas = document.getElementById('daily-consumption');
+    chartDailyConsumption = new Chart(chartCanevas.getContext('2d'), {
 		type: 'bar',
 		data: {
 			labels: labels,
 			datasets: [{
-				backgroundColor: "rgba(54, 162, 235, 0.7)",
-				borderColor: "rgba(54, 162, 235, 1)",
+				backgroundColor: "#ffab00", // Amber A400
+                borderColor: "#ffab00",
 				borderWidth: 1,
 				data: data
 			}]
@@ -100,4 +105,67 @@ function createBarChart ()
             }
 		}
 	});
+
+    chartCanevas.onclick = function (event) {
+        var elements = chartDailyConsumption.getElementsAtEvent(event);
+
+        if (elements.length) {
+            var index = elements[0]['_index'];
+            showDay(days[index]);
+        }
+    };
+
+    // Create an empty line chart
+    chartPower = new Chart(document.getElementById('power').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: []
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            legend: {
+				display: false
+			}
+        }
+	});
+}
+
+function showDay (day)
+{
+    document.getElementById('selected-day').innerText = day.data[0]['date'].split(' ')[0];
+
+    var points = [];
+    day.data.forEach(function (info) {
+        points.push({
+            x: info['date'],
+            y: info['consumption']
+        });
+    });
+
+    chartPower.data.datasets = [{
+        data: points,
+        borderColor:  "#ffab00", // Amber A400
+        fill: false,
+        lineTension: 0,
+        pointRadius: 0
+    }];
+    chartPower.update();
 }

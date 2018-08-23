@@ -17,7 +17,7 @@ function showCharts ()
     reader.onloadend = (function () {
         var data = reader.result;
 
-        data = data.split('\n')
+        data = data.split('\n');
         data.splice(0, 1);
         data = data.join('\n');
 
@@ -60,5 +60,44 @@ function showCharts ()
 
             lastConsumption = totalConsumption;
         });
+
+        createBarChart();
     });
+}
+
+function createBarChart ()
+{
+    var labels = [];
+    var data = [];
+
+    days.forEach(function (day) {
+        labels.push(day.data[0].date.split(' ')[0]);
+        data.push(day.consumption);
+    });
+
+    new Chart(document.getElementById('daily-consumption').getContext('2d'), {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [{
+				backgroundColor: "rgba(54, 162, 235, 0.7)",
+				borderColor: "rgba(54, 162, 235, 1)",
+				borderWidth: 1,
+				data: data
+			}]
+		},
+		options: {
+			responsive: true,
+			legend: {
+				display: false
+			},
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            }
+		}
+	});
 }

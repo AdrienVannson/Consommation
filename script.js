@@ -31,7 +31,7 @@ function showCharts ()
         data.split('\n').forEach(function(line) {
             var date = line.split(' ')[0];
 
-            var totalConsumption = parseInt(line.split(' ')[2]) + parseInt(line.split(' ')[3]);
+            var totalConsumption = parseInt(line.split(' ')[2])/* + parseInt(line.split(' ')[3])*/;
             var consumption = totalConsumption - lastConsumption;
 
             if (date != lastDate) {
